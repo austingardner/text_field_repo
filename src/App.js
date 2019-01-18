@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Table, TableBody, TableCell, TableHead, TableRow, TextField } from "@material-ui/core";
 
 class App extends Component {
+  state = {
+    value: ""
+  };
+
+  onChange = e => {
+    this.setState({value: e.target.value});
+  };
+
   render() {
+    const {value} = this.state;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              Value
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>
+              <TextField data-testid="test-field"
+                value={value}
+                onChange={e => this.onChange(e)}
+              />
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
   }
 }
